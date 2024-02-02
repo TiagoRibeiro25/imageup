@@ -1,0 +1,34 @@
+{
+	"name": "api",
+	"version": "1.0.0",
+	"description": "API for the imageup cli tool",
+	"main": "./src/server.ts",
+	"private": true,
+	"scripts": {
+		"start": "node ./dist/server.js",
+		"dev": "nodemon",
+		"build": "npx tsc"
+	},
+	"keywords": [],
+	"author": "Tiago Ribeiro",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/compression": "^1.7.5",
+		"@types/cors": "^2.8.17",
+		"@types/node": "^20.11.16",
+		"dotenv": "^16.4.1",
+		"nodemon": "^3.0.3",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.3.3"
+	},
+	"dependencies": {
+		"cloudinary": "^2.0.0",
+		"compression": "^1.7.4",
+		"cors": "^2.8.5",
+		"express": "^4.18.2",
+		"express-rate-limit": "^7.1.5",
+		"helmet": "^7.1.0",
+		"mongoose": "^8.1.1",
+		"morgan": "^1.10.0"
+	}
+}
