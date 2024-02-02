@@ -4,5 +4,8 @@ declare namespace NodeJS {
 		PORT: string;
 		KEY_ACCESS: string;
 		MONGOOSE_URL: string;
+		CLOUDINARY_API_KEY: string;
+		CLOUDINARY_API_SECRET: string;
+		CLOUDINARY_CLOUD_NAME: string;
 	}
 }

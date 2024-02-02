@@ -1,9 +1,7 @@
 import { ConnectOptions } from "mongoose";
 
-const options: ConnectOptions = {
+export default {
 	authSource: "admin",
 	dbName: "imageup",
 	compressors: "zlib",
-};
-
-export default options;
+} as ConnectOptions;
