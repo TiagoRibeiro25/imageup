@@ -13,6 +13,8 @@ function handleResponse(response: Response, statusCode: number, message: string,
 		message: message.trim(),
 		data: data ?? null,
 	});
+
+	response.end();
 }
 
 export default { handleResponse };
