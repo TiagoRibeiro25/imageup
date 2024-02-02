@@ -1,13 +1,13 @@
 import { Response } from "express";
 
 /**
- * Handles the response for an API request.
+ * Send a response to the client.
  * @param response - The response object.
  * @param statusCode - The status code of the response.
  * @param message - The message to be included in the response.
  * @param data - The data to be included in the response.
  */
-function handleResponse(response: Response, statusCode: number, message: string, data: any) {
+function send(response: Response, statusCode: number, message: string, data: any) {
 	response.status(statusCode).json({
 		success: !!(statusCode >= 200 && statusCode <= 299),
 		message: message.trim(),
@@ -17,4 +17,4 @@ function handleResponse(response: Response, statusCode: number, message: string,
 	response.end();
 }
 
-export default { handleResponse };
+export default { send };
