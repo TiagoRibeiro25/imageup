@@ -13,7 +13,7 @@ app.use(cors()); // Enable CORS
 app.use(helmet()); // Enable Helmet
 app.use(rateLimit(config.rateLimit)); // Enable Rate Limit
 app.use(compression(config.compression)); // Enable Compression
-app.use(express.json({ limit: "15mb" })); // Enable JSON Parser with 15mb limit (max size of request body)
+app.use(express.json(config.bodyParser)); // Enable JSON Parser with 15mb limit (max size of request body)
 app.use(morgan("dev")); // Enable Morgan for logging
 
 // app.use("/api/v1", routes);
