@@ -26,6 +26,12 @@ app.listen(process.env.PORT, () => {
 		.then(() => {
 			log("Connected to the database");
 			log("Server is running on port: " + process.env.PORT);
+
+			// Add an image
+			database.mongo.Image.create({
+				cloudinary_id: "test_id",
+				cloudinary_url: "test_url",
+			});
 		})
 		.catch((_err: unknown) => {
 			log("Failed to connect to the database");

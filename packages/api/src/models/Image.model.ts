@@ -5,6 +5,10 @@ const ImageSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	cloudinary_url: {
+		type: String,
+		required: true,
+	},
 	uploaded_at: {
 		type: Date,
 		default: Date.now,
