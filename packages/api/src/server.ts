@@ -1,20 +1,21 @@
-import { log } from "console";
-import app from "./app";
-import db from "./database";
-import utils from "./utils";
-
-// Log the environment
-log("\nCurrent environment: " + process.env.NODE_ENV);
-
 // Load the environment variables from the .env file (development only)
 if (process.env.NODE_ENV !== "production") {
 	require("dotenv").config();
 }
 
+import { log } from "console";
+import utils from "./utils";
+
+// Log the environment
+log("\nCurrent environment: " + process.env.NODE_ENV);
+
 // Check if all the environment variables are set
 if (!utils.envs.validateEnvs()) {
 	process.exit(1);
 }
+
+import app from "./app";
+import db from "./database";
 
 app.listen(process.env.PORT, () => {
 	log("Starting the server...");
