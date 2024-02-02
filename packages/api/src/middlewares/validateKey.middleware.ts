@@ -12,9 +12,7 @@ import utils from "../utils";
  * @returns A Promise that resolves to void.
  */
 export default async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-	const key = req.headers["x-api-key"];
-
-	if (key !== process.env.KEY_ACCESS) {
+	if (req.headers["x-api-key"] !== process.env.KEY_ACCESS) {
 		utils.response.send(res, utils.http.StatusUnauthorized, "Unauthorized", null);
 		return;
 	}
