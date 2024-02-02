@@ -1,5 +1,5 @@
 import { log } from "console";
-import VALID_ENVS from "../data/envs.json";
+import VALID_ENVS from "../json/envs.json";
 
 /**
  * Validates the required environment variables.
