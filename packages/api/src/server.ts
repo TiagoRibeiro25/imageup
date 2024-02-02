@@ -1,6 +1,6 @@
 import { log } from "console";
 import app from "./app";
-import database from "./database";
+import db from "./database";
 import utils from "./utils";
 
 // Log the environment
@@ -21,17 +21,11 @@ app.listen(process.env.PORT, () => {
 	log("Connecting to the databases...");
 
 	// Connect to the database
-	database.mongo
+	db.mongo
 		.connect()
 		.then(() => {
 			log("Connected to the database");
 			log("Server is running on port: " + process.env.PORT);
-
-			// Add an image
-			database.mongo.Image.create({
-				cloudinary_id: "test_id",
-				cloudinary_url: "test_url",
-			});
 		})
 		.catch((_err: unknown) => {
 			log("Failed to connect to the database");

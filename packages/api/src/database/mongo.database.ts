@@ -1,13 +1,11 @@
 import mongoose, { Mongoose } from "mongoose";
 import config from "../config";
-import ImageModel from "../models/Image.model";
+import createImageModel from "../models/Image.model";
 
-const mongo = {
+export default {
 	mongoose,
 	connect: (): Promise<Mongoose> => {
 		return mongoose.connect(process.env.MONGOOSE_URL, config.mongoose);
 	},
-	Image: ImageModel,
+	Image: createImageModel(mongoose),
 };
-
-export default mongo;
