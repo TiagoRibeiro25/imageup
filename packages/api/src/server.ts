@@ -4,7 +4,7 @@ import db from "./database";
 import utils from "./utils";
 
 // Log the environment
-log("Current environment: " + process.env.NODE_ENV);
+log("\nCurrent environment: " + process.env.NODE_ENV);
 
 // Load the environment variables from the .env file (development only)
 if (process.env.NODE_ENV !== "production") {
@@ -25,7 +25,7 @@ app.listen(process.env.PORT, () => {
 		.connect()
 		.then(() => {
 			log("Connected to the database");
-			log("Server is running on port: " + process.env.PORT);
+			log("Server is running on port: " + process.env.PORT + "\n");
 		})
 		.catch((_err: unknown) => {
 			log("Failed to connect to the database");
