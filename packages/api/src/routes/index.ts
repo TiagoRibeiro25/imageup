@@ -14,4 +14,7 @@ router.post(
 	controllers.image.uploadImage,
 );
 
+// Route for deleting outdated images.
+router.delete("/", middlewares.validateKey, controllers.image.deleteOutdatedImages);
+
 export default router;

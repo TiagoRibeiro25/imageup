@@ -7,9 +7,16 @@ import db from "../database";
 import services from "../services";
 import utils from "../utils";
 
+/**
+ * Uploads an image to the server, uploads it to Cloudinary, and saves the image's URL and ID to the database.
+ *
+ * @param req - The request object containing the image data.
+ * @param res - The response object used to send the server's response.
+ * @returns A Promise that resolves to void.
+ */
 async function uploadImage(req: Request, res: Response): Promise<void> {
 	const base64Image = req.body.image as Base64Img;
-	log(`Image received: ${base64Image.substring(0, 50)}...`);
+	log(`\nImage received: ${base64Image.substring(0, 50)}...`);
 
 	try {
 		const pictureResult: UploadApiResponse = await services.cloudinary.uploader.upload(
@@ -32,4 +39,27 @@ async function uploadImage(req: Request, res: Response): Promise<void> {
 	}
 }
 
-export default { uploadImage };
+/**
+ * Deletes images from the database that are outdated (where the date_to_delete is less than the current date).
+ *
+ * @param req - The request object used to get the server's request.
+ * @param res - The response object used to send the server's response.
+ * @returns A Promise that resolves to void.
+ */
+async function deleteOutdatedImages(_req: Request, res: Response): Promise<void> {
+	try {
+		const result = await db.mongo.Image.deleteMany({
+			date_to_delete: { $lt: new Date() },
+		});
+
+		log(`\nDeleted ${result.deletedCount} outdated images`);
+
+		utils.response.send(res, utils.http.StatusOK, "Deleted outdated images", {
+			deletedCount: result.deletedCount,
+		});
+	} catch (err: any) {
+		utils.response.handleError(res, err, __filename);
+	}
+}
+
+export default { uploadImage, deleteOutdatedImages };
