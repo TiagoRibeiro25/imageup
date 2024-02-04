@@ -48,6 +48,25 @@ async function uploadImage(req: Request, res: Response): Promise<void> {
  */
 async function deleteOutdatedImages(_req: Request, res: Response): Promise<void> {
 	try {
+		// Fetch all images that are outdated
+		const outdatedImages = await db.mongo.Image.find(
+			{
+				date_to_delete: { $lt: new Date() },
+			},
+			{
+				_id: 1,
+				cloudinary_id: 1,
+			},
+		);
+
+		// Delete the outdated images from Cloudinary
+		const cloudinaryResult = await services.cloudinary.api.delete_resources(
+			outdatedImages.map((image) => image.cloudinary_id),
+		);
+
+		log(`\nDeleted ${cloudinaryResult.deleted} outdated images from Cloudinary`);
+
+		// Delete the outdated images from the database
 		const result = await db.mongo.Image.deleteMany({
 			date_to_delete: { $lt: new Date() },
 		});
