@@ -24,6 +24,6 @@ var ConfigData = Config{
 
 	API: APIConfig{
 		URL: "http://localhost:5000/api/v1",
-		Key: "1234567890",
+		Key: "123",
 	},
 }
